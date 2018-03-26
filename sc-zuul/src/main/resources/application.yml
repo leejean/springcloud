@@ -7,6 +7,14 @@ server:
 spring:
   application:
     name: sc-zuul
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+  data.mongodb:
+    # host: 172.16.1.191
+    # port: 27017
+    # database: fcs
+    uri: mongodb://yilijian:ylj19911013@ds161012.mlab.com:61012/leejean    
 zuul:
   routes:
     api-a:
@@ -15,3 +23,13 @@ zuul:
     api-b:
       path: /api-b/**
       serviceId: sc-eureka-feign
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
+  tokenHead: "Bearer "
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+      register: "auth/register"
